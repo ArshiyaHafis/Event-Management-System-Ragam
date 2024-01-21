@@ -1,4 +1,4 @@
-# Project Name
+# Event Nexus
 
 ## Contents
 - [Introduction](#introduction)
@@ -6,16 +6,23 @@
 - [Screenshots](#screenshots)
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage Examples](#usage-examples)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Introduction
-Briefly introduce your project and its purpose. Mention any key features or functionalities that make it unique.
+The Campus Events Management System is a web-based platform designed to streamline event organization and participation within the campus community. This system provides an intuitive interface for both event organizers and students, fostering seamless event registration and exploration.
 
-## How to Use
-Provide instructions on how to set up and use your backend project. Include details on any necessary dependencies, configurations, or environment variables.
+## How to use
+1. Clone the repository:
+
+   ```bash
+   git clone 
+
+2. Install the dependencies:
+
+    ```bash
+    cd portfolio-v2
+    npm install
+
 
 ## Screenshots
 Include screenshots or images showcasing different aspects of your backend application. This could be code snippets, API responses, or any relevant visuals.
