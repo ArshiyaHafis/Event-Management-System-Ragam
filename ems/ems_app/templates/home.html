@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% csrf_token %} 
+
+{% block content %}
+<div class="slider">
+	<div class="slide">
+		<img src="/media/images/download.png" alt="Image 1">
+	</div>
+	<div class="slide">
+		<img src="/media/images/downloadt.jpg" alt="Image 2">
+	</div>
+	<div class="slide">
+		<img src="/media/images/digital-fingerprint.jpg" alt="Image 3">
+	</div>
+</div>
+
+<div class="slider-nav">
+	<button class="active"></button>
+	<button></button>
+	<button></button>
+</div>
+
+<script>
+	// Get the slide elements and navigation buttons
+	var slides = document.getElementsByClassName('slide');
+	var navButtons = document.getElementsByClassName('slider-nav')[0].getElementsByTagName('button');
+
+	// Initialize the current slide index
+	var currentSlide = 0;
+
+	// Show the first slide
+	slides[currentSlide].style.display = 'block';
+	navButtons[currentSlide].className = 'active';
+
+	// Function to switch to the next slide
+	function nextSlide() {
+		slides[currentSlide].style.display = 'none';
+		navButtons[currentSlide].className = '';
+
+		currentSlide = (currentSlide + 1) % slides.length;
+
+		slides[currentSlide].style.display = 'block';
+		navButtons[currentSlide].className = 'active';
+	}
+
+	for (var i = 0; i < navButtons.length; i++) {
+		navButtons[i].addEventListener('click', function() {
+			slides[currentSlide].style.display = 'none';
+			navButtons[currentSlide].className = '';
+
+			currentSlide = Array.prototype.indexOf.call(navButtons, this);
+
+			slides[currentSlide].style.display = 'block';
+			navButtons[currentSlide].className = 'active';
+		});
+	}
+
+	// Automatically switch to the next slide every 3 seconds
+	setInterval(nextSlide, 3000);
+</script>
+{% endblock %}

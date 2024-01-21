@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% csrf_token %} 
+{% block content %}
+{% for event in event_set %}
+<div class="event">
+	<div class ="event-detail-container">
+		<div class = "event-details">
+			<dd>Event Name : {{ event.event_name }}</dd>
+			<dd>Description: {{ event.event_descp }}</dd>
+			<dd>Link for the event: {{ event.event_link }}</dd>
+			<dd>Time: {{ event.event_time }}</dd>
+			<dd>Date: {{ event.event_date }}</dd>
+			<dd>Location: {{ event.event_location }}</dd>
+		</div>
+	</div>
+	<div class = "event-image-container">
+		<img src="/media/{{ event.event_image }}" alt="Event Image" class="event-image">
+	</div>
+{% endfor %}
+{% if event_exists %}
+	<script>
+	alert("Event already exists!");
+	</script>
+{% endif %}
+{% endblock %}
