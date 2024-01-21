@@ -1,0 +1,83 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+{% if user.is_authenticated %}
+    Hi {{ user.username }}!
+    Choose which event to delete
+{% endif %}
+{% if msg %}
+    {{msg}}
+{% endif %}
+<div class="event-container">
+    {% for i in event %}
+    <a href="#" class="show-details" data-name="{{ i.event_name }}" data-descp="{{ i.event_descp }}"
+        data-link="{{ i.event_link }}" data-time="{{ i.event_time }}" data-date="{{ i.event_date }}"
+        data-location="{{ i.event_location }}">
+        <div class="event-card">
+            <img src="/media/{{ i.event_image }}" alt="Event Image">
+            <h3 class="event-name">{{ i.event_name }}</h3>
+            <p class="event-details">
+                <span class="location">{{ i.event_location }}</span>
+                <span class="date">{{ i.event_date }}</span>
+                <span class="time">{{ i.event_time }}</span>
+            </p>
+            {% if user.is_authenticated %}
+            <div class="options">
+                {% with name=i.event_name %}
+                    <a href="{% url 'del_event' name=name id=i.id %}" class="add_option">Delete Event</a>
+                    <a href="{% url 'upd_event' name=name id=i.id %}" class="add_option">Update Event</a>
+                {% endwith %}
+            </div>
+            {% endif %}
+        </div>        
+    </a>
+    {% endfor %}
+</div>
+<div class="popup-overlay"></div>
+
+<div class="popup" id="eventPopup">
+    <div class="event-details">
+        <dd>Event Name: <span id="eventName"></span></dd>
+        <dd>Description: <span id="eventDescp"></span></dd>
+        <dd>Link for the event: <a href="" id="eventLink"></a></dd>
+        <dd>Time: <span id="eventTime"></span></dd>
+        <dd>Date: <span id="eventDate"></span></dd>
+        <dd>Location: <span id="eventLocation"></span></dd>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $(".show-details").click(function(e) {
+            e.preventDefault();
+            
+            // Retrieve the event details from the clicked element's data attributes
+            var eventName = $(this).data('name');
+            var eventDescp = $(this).data('descp');
+            var eventLink = $(this).data('link');
+            var eventTime = $(this).data('time');
+            var eventDate = $(this).data('date');
+            var eventLocation = $(this).data('location');
+            
+            // Set the event details in the pop-up box
+            $("#eventName").text(eventName);
+            $("#eventDescp").text(eventDescp);
+            $("#eventLink").attr("href", eventLink).text(eventLink);
+            $("#eventTime").text(eventTime);
+            $("#eventDate").text(eventDate);
+            $("#eventLocation").text(eventLocation);
+            
+            // Show the pop-up box and overlay
+            $("#eventPopup").addClass("active");
+            $(".popup-overlay").addClass("active");
+        });
+        
+        $(".popup-overlay").click(function(e) {
+            // Hide the pop-up box and overlay when clicked outside the box
+            if ($(e.target).hasClass("popup-overlay")) {
+                $("#eventPopup").removeClass("active");
+                $(".popup-overlay").removeClass("active");
+            }
+        });
+    });
+</script>
+
+{% endblock %}

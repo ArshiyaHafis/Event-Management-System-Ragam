@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% if user.is_authenticated %}
+Hi {{ user.username }}!
+    <article>
+      <div class="login-box">
+          <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for i in form %}
+            <div>
+              <p>{{i.label}} : <br> {{i}} </p>
+            </div>
+            {% endfor %}
+            <input type="submit" id="button">
+          </form>
+          </div>
+      <!--End row-->
+      <h4>{{msg}}</h4>
+    </article>
+{% else %}
+    <h4>Please log in to access the content.</h4>
+    <a href="{% url 'login' %}">Log in</a>
+{% endif %}
+{% endblock %}

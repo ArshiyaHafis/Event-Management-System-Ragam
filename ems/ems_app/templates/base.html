@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Karla&family=Markazi+Text:wght@500&display=swap" rel="stylesheet" />
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<title>{% block title %}EventNexus{% endblock %}</title>
+</head>
+<body>
+	<div class="sidebar">
+		<div class="top">
+			<div class="logo">
+				<i class="bx bxl-codepen bx-sm"></i>
+				<span>EventNexus</span>
+			</div>
+			<i class="bx bx-menu bx-sm" id="btn"></i>
+		</div>
+
+		{% if user.is_authenticated %}
+			<div class="user">
+				{% with profile=user.userprofile %}
+					{% if profile.user_pic %}
+						<img src="/media/{{ profile.user_pic }}" alt="pp" class="pp">
+					{% else %}
+						<img src="{% static 'img/me.png' %}" alt="pp" class="pp" />
+					{% endif %}
+				{% endwith %}
+				
+				<div>
+					<p class="bold">{{ user.username }}</p>
+					{% if user.is_superuser %}
+						<p>Admin</p>
+					{% else %}
+						<p>User</p>
+					{% endif %}
+				</div>
+			</div>
+		{% endif %}
+		<ul>
+			<li>
+				<a href="/">
+					<i class='bx bxs-home-alt-2 bx-sm'></i>
+					<span class="nav-item">Home</span>
+				</a>
+				<span class="tooltip">Home</span>
+			</li>
+			<li>
+				<a href="{% url 'event' %}">
+					<i class='bx bxs-party bx-sm'></i>
+					<span class="nav-item">Event</span>
+				</a>
+				<span class="tooltip">Event</span>
+			</li>
+			{% if user.is_authenticated %}
+				<li>
+					<a href="{% url 'logout' %}">
+						<i class='bx bx-log-in bx-sm'></i>
+						<span class="nav-item">Logout</span>
+					</a>
+					<span class="tooltip">Logout</span>
+				</li>
+				<li>
+					<a href="{% url 'dashboard' %}">
+						<i class='bx bxs-dashboard bx-sm'></i>
+						<span class="nav-item">Dashboard</span>
+					</a>
+					<span class="tooltip">Dashboard</span>
+				</li>
+			{% else %}
+				<li>
+					<a href="{% url 'register' %}">
+						<i class='bx bxs-edit bx-sm'></i>
+						<span class="nav-item">Register</span>
+					</a>
+					<span class="tooltip">Register</span>
+				</li>
+				<li>
+					<a href="{% url 'login' %}">
+						<i class='bx bx-log-in bx-sm'></i>
+						<span class="nav-item">Login</span>
+					</a>
+					<span class="tooltip">Login</span>
+				</li>
+			{% endif %}
+		</ul>
+	</div>
+	<div class="main-content">
+		<div class="navbar">
+			<ul>
+				<li>
+					<a href="/">
+						<span class="nav-item">Home</span>
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'event' %}">
+						<span class="nav-item">Event</span>
+					</a>
+				</li>
+				{% if user.is_authenticated %}
+					<li>
+						<a href="{% url 'logout' %}">
+							<span class="nav-item">Logout</span>
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'dashboard' %}">
+							<span class="nav-item">Dashboard</span>
+						</a>
+					</li>
+				{% else %}
+					<li>
+						<a href="{% url 'register' %}">
+							<span class="nav-item">Register</span>
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'login' %}">
+							<span class="nav-item">Login</span>
+						</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+		<div class="container">
+			<header>
+				<h1 class="page-title">{% block page_title %}EventNexus{% endblock %}</h1>
+			</header>
+			<main>{% block content %}{% endblock %}</main>
+		</div>
+	</div>
+</body>
+<script>
+	let btn = document.querySelector('#btn')
+	let sidebar = document.querySelector('.sidebar')
+	btn.onclick = function(){
+		sidebar.classList.toggle('active')
+	}
+</script>
+</html>

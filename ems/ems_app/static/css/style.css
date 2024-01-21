@@ -1,0 +1,551 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Karla', sans-serif;;
+}
+.pp{
+    width: 50px;
+    border-radius: 100%;
+    border: 1px solid #E8B82E;
+}
+.slider {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .slide {
+    display: none;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: auto;
+  }
+  
+  
+  .slider-nav {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .slider-nav button {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #888;
+    border: none;
+    margin: 0 5px;
+    padding: 0;
+  }
+  
+  .slider-nav button.active {
+    background-color: #333;
+  }
+  .slide img {
+    width: 90vw; /* Set width to 100% of viewport width */
+    height: 90vh; /* Set height to 100% of viewport height */
+    object-fit: cover; /* Maintain aspect ratio and cover the entire slide */
+  }
+  
+  
+.title-holder{
+    background-color: #E8B82E;
+    margin: 0;
+    padding: 0;
+    height:100vh;
+    width: 180vh;
+}
+
+.sidebar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:100vh;
+    width: 80px;
+    background-color: #d13732;
+    padding: .4rem .8rem;
+    transition: all 0.5s ease;
+}
+
+/*toggle sidebar*/
+.sidebar.active ~ .main-content{
+    left:250px;
+    width: calc (100% - 250px);
+}
+.sidebar.active{
+    width: 250px;
+}
+
+/*toggle hamurger menu*/
+.sidebar #btn{
+    position: absolute;
+    color: #292B27;
+    top: .4rem;
+    left: 50%;
+    font-size: 1.8rem;
+    transform: translate(-50%, 47%);
+    cursor: pointer;    
+}
+
+.sidebar.active #btn{
+    left: 85%;
+}
+
+/*toggle logo*/
+.sidebar .top .logo{
+    color: #292B27;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0
+}
+
+
+.sidebar.active .top .logo{
+    opacity: 1;
+}
+
+
+.page-title {
+    background-color: #d13732; /* Replace with the sidebar color */
+    color: #292B27; /* Replace with the text color */
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar .logo span {
+    color: #292B27; /* Replace with your desired color */
+  }
+
+  
+/*styling logo */
+.top .logo i{
+    font-size: 2rem;
+    margin-right: 5px;
+}
+
+/* styling profile */
+.user{
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+/*styling profile name*/
+.user p{
+    color: #292B27;
+    opacity: 1;
+    margin-left: 1rem;
+}
+
+.bold{
+    font-weight: 600;
+}
+
+
+/*to toggle the profile name*/
+.sidebar p{
+    opacity: 0;
+}
+.sidebar.active p {
+    opacity: 1;     /*to show the name*/
+}
+
+
+/* to style the menu items */
+.sidebar ul li{
+    position: relative;
+    list-style-type: none;      /*to remove bullet points*/
+    height: 50px;
+    width: 90%;
+    margin: 0.8rem auto;
+    line-height: 50px;          /*spacing between each line*/
+}
+
+
+/* for href menu items  */
+.sidebar ul li a {
+    color: #292B27;
+    display: flex;
+    align-items: center;
+    text-decoration: none;     /* to remove hyperlink decor*/
+    border-radius: 0.8rem;
+}
+
+/* for hovering over each item and show color */
+.sidebar ul li a:hover{
+    background-color: #292B27;
+    color: #d13732;
+}
+
+.sidebar ul li a i{
+    min-width: 50px;
+    text-align: center;
+    height: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+}
+
+.sidebar .nav-item{
+    opacity: 0;
+    font-size: 1.5rem;
+}
+
+.sidebar.active .nav-item{
+    opacity: 1;
+}
+
+
+.sidebar ul li .tooltip{
+    position: absolute;
+    left: 125px;
+    top: 50%;
+    transform: translate(-40%, -50%);
+    box-shadow: 0 0.5rem 0.8rem rgba(0, 0, 0, 0.2);
+    border-radius: 0.6rem;
+    padding: .4rem 1.2rem;
+    line-height: 1.8rem;
+    z-index: 20;
+    opacity: 0;
+}
+
+.sidebar ul li:hover .tooltip{
+    opacity: 1;
+}
+.sidebar.active ul li .tooltip{
+    display: none;
+}
+
+.main-content{
+    color: #292B27;
+    position: relative;
+    background-color:#E9D3C1;
+    min-height: 100vh;
+    top: 0;
+    left: 80px;
+    transition: all 0.5s ease;
+    width: calc(100% - 80px);
+    padding: 1rem;
+    /* height: 200vh; */
+}
+
+/* .container{
+    display: block;
+    justify-content: space-evenly;
+} */
+.event-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.event-card {
+    width: 100%;
+    width: 350px;
+    position: relative;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    padding: 10px;
+    height: 100%; /* Added */
+}
+
+.event-card img {
+    width: 100%;
+    height: 200px; /* Adjust the height as needed */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.event-name {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.options {
+    display: none;      /*hide the checkbox*/
+    position: absolute;         /*to position*/
+    top: 40%;
+    left: 25%;
+    transform: translate(0%, -50%);
+    padding: 5px 10px;
+    background-color: #E8B82E;
+    text-decoration: none;
+    /* transform: translate(-50%, -50%);       center of event */
+    /* z-index: 2; */
+    border-radius: 4px;
+    font-size: 14px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.button-function {
+    display: inline-block;       /* Change from position: absolute to display: inline-block */
+    padding: 5px 10px;
+    background-color: #E8B82E;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+.event-card {
+    position: relative;
+  }
+.event-container a {
+    color: #292B27; /* Set the color of the link */
+    text-decoration: none; /* Remove underline */
+}
+
+.event-card:hover .options {            /*hover pseduo class ued*/
+    display: block;
+}
+
+  
+/* .details {
+    margin-top: 5px;
+    font-size: 14px;
+}
+  
+.location {
+    margin-right: 10px;
+}
+  
+.date,.time {
+    color: #888888;
+} */
+
+a {
+    text-decoration: none;
+}
+
+  
+  .event {
+    display: flex;
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* grid-template-columns: auto auto; */
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+  }
+  
+  /* .event dt {
+    width: 75%;
+    font-weight: bold;
+    grid-row: 2/4;
+  } */
+  
+  .event dd {
+    margin: 0;
+    flex-basis: 100%;
+  }
+  
+.event-image {
+/* grid-column-start: 2; */
+    /* max-width: 100%;  */
+    /* height: auto; 
+    width: 50%; */
+    /* margin-left: ; */
+/* border-radius: 50%; */
+/* object-fit: cover; */
+    width: 100%;
+    height: 200px; /* Adjust the height as needed */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* .event-pp{
+ 
+}*/
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 40px;
+    border: 1px solid black;
+    width: 600px;
+    display: none;
+    z-index: 9999;
+    filter: blur(3px);
+}
+
+.popup.active {
+    display: block;
+    filter: none;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    display: none;
+}
+
+.popup-overlay.active {
+    display: block;
+}
+
+
+article {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    /* height: 100vh; */
+}   
+
+.login-box {
+    background-color: #D1CFE2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+    font-size: 14px;
+}
+
+#button {
+    border-radius: 50px;
+    background-color: #B8918A;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(124, 209, 235, 0.5);
+    margin-top: 10px;
+}
+
+#button:hover {
+    background-color: #A37067;
+}
+
+#button:active {
+    background-color: #DDD3CE;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.4rem 0.8rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #d13732;
+        z-index: 9999;
+      }
+  
+      .sidebar.active ~ .main-content {
+        margin-top: 80px;
+        width: 100%;
+      }
+  
+    .sidebar.active {
+      flex-direction: row;
+      height: 80px;
+    }
+  
+    .sidebar #btn {
+        display: block;
+        position: relative;
+        color: #292B27;
+        font-size: 1.8rem;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+  
+      .nav {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        padding: 0.4rem 0.8rem;
+        background-color: #d13732;
+        height: 80px;
+      }
+      .sidebar ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        margin-top: 0;
+        padding-left: 0;
+      }
+  
+      .sidebar ul li {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    
+      .sidebar ul li a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.4rem 0.8rem;
+      }
+    
+      .sidebar ul li a i {
+        min-width: initial;
+        margin-right: 0;
+      }
+    
+      .sidebar ul li .tooltip {
+        display: none;
+      }
+    
+      .main-content {
+        margin-top: 80px;
+        width: 100%;
+        padding-left: 0;
+      }
+    
+      .event-container {
+        justify-content: center;
+      }
+    
+      .event-card {
+        max-width: 100%;
+      }
+  }
+  
