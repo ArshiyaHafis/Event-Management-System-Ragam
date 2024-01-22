@@ -25,11 +25,26 @@ The Campus Events Management System is a web-based platform designed to streamli
 
 ## Screenshots
 
-### Screenshot 1
+### Home
+![Dashboard](/images/home.png)
+
+### Login
+![Login](/images/login.png)
+
+### Register
+![Register](/images/register.png)
+
+### Events
+![Events](/images/events.png)
+
+### Dashboard
 ![Dashboard](/images/dashboard.png)
 
-### Screenshot 2
-![Description of the screenshot](path/to/screenshot2.png)
+### Add
+![Add](/images/add.png)
+
+### Delete
+![Delete](/images/delete.png)
 
 
 ## Installation
