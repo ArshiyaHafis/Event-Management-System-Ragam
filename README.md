@@ -36,14 +36,16 @@ The Campus Events Management System is a web-based platform designed to streamli
 1. Clone the repository:
 
    ```bash
-   git clone 
+   git clone https://github.com/ArshiyaHafis/Event-Management-System-Ragam.git
 
-2. Install the dependencies:
+2. Activate virtual environment:
 
     ```bash
-    cd portfolio-v2
-    npm install
+    webenv/scripts/activate
 
+3. Install django
+   ```bash
+   pip install django
 
 ## Requirements
    ```bash
